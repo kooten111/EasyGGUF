@@ -17,7 +17,7 @@ def menu_selection():
 
 def main(folder_path):
     llamacpp_path = get_llamacpp_path()
-    model_name = os.path.basename(folder_path)
+    model_name = os.path.basename(os.path.normpath(folder_path))
     gguf_file_path = os.path.join(folder_path, f"{model_name}.GGUF")
     quantization_option = menu_selection()
 
@@ -29,7 +29,8 @@ def main(folder_path):
         print(f"The .GGUF file for {model_name} already exists. Skipping conversion.")
 
     if os.path.exists(gguf_file_path):
-        quantize_command = [os.path.join(llamacpp_path, "quantize"), gguf_file_path, f"{folder_path}/{model_name}-{quantization_option}.gguf", quantization_option]
+        output_file_name = f"{model_name}-{quantization_option}.gguf"  # Corrected output file naming
+        quantize_command = [os.path.join(llamacpp_path, "quantize"), gguf_file_path, os.path.join(folder_path, output_file_name), quantization_option]
         print("Running quantize command...")
         subprocess.run(quantize_command)
 
