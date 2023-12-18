@@ -29,7 +29,7 @@ def main(folder_path):
         print(f"The .GGUF file for {model_name} already exists. Skipping conversion.")
 
     if os.path.exists(gguf_file_path):
-        output_file_name = f"{model_name}-{quantization_option}.gguf"  # Corrected output file naming
+        output_file_name = f"{model_name}-{quantization_option}.gguf"
         quantize_command = [os.path.join(llamacpp_path, "quantize"), gguf_file_path, os.path.join(folder_path, output_file_name), quantization_option]
         print("Running quantize command...")
         subprocess.run(quantize_command)
