@@ -9,10 +9,14 @@ def get_llamacpp_path():
     return settings.get('llamacpp_path')
 
 def menu_selection():
-    menu_options = ["Q2_K", "Q3_K_M", "Q4_K_M", "Q5_K_M", "Q6_K"]
+    menu_options = ["Q2_K", "Q3_K_M", "Q4_K_M", "Q5_K_M", "Q6_K", "Q8_0"]
     for i, option in enumerate(menu_options):
         print(f"{i + 1}. {option}")
-    choice = int(input("Select an option (1-5): "))
+    choice = int(input("Select an option (1-6): "))
+    if choice < 1 or choice > len(menu_options):
+        print("Invalid choice. Please select a valid option.")
+        return menu_selection()
+    
     return menu_options[choice - 1]
 
 def main(folder_path):
