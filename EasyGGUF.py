@@ -26,7 +26,7 @@ def main(folder_path):
     quantization_option = menu_selection()
 
     if not os.path.exists(gguf_file_path):
-        convert_command = f"python {llamacpp_path}/convert.py \"{folder_path}\" --outfile \"{gguf_file_path}\" --outtype f16"
+        convert_command = f"python {llamacpp_path}/convert-hf-to-gguf.py \"{folder_path}\" --outfile \"{gguf_file_path}\" --outtype f16"
         print("Running convert command:", convert_command)
         subprocess.run(convert_command, shell=True)
     else:
